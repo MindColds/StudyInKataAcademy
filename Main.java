@@ -8,7 +8,8 @@ public class Main {
 
         String regex = "[+/\\-*]";// разделитель по оператору
         String regexArabic = "[1234567890]{1,2}[+/\\-*][1234567890]{1,2}";//образец арифметического выражения с арабскими цифрами
-        String regexRoman = "[Ⅰ-Ⅹ][+/\\-*][Ⅰ-Ⅹ]";//образец арифметического выражения с римскими цифрами
+        //String regexRoman = "[Ⅰ-Ⅹ][+/\\-*][Ⅰ-Ⅹ]";//образец арифметического выражения с римскими цифрами
+        String regexRoman ="[IVX]{1,4}[+/\\-*][IVX]{1,4}";//образец арифметического выражения с буквами в форме римских цифр
 
         if (!(action.matches(regexArabic) || action.matches(regexRoman))) {//Проверка на соответствие образцам
             try {
@@ -74,7 +75,8 @@ public class Main {
         if (action.matches(regexRoman)) {//исполняемый код в случае применения римских цифр, и здесь каждая цифра на всякий случай побрита
 
             String[] symbols = action.split(regex);
-            String[] romanNumbers =  { "Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ","Ⅸ","Ⅹ","Ⅼ","Ⅽ"};
+            //String[] romanNumbers =  { "Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ","Ⅸ","Ⅹ","Ⅼ","Ⅽ"};//символы с кодировки UTF-8 с 8544 по 8557
+            String[] romanNumbers =  { "I","II","III","IV","V","VI","VII","VIII","IX","X","L","C"};//обычные буквы в форме римских цифр
 
             int num = 0;
 
@@ -132,7 +134,7 @@ public class Main {
 
         static int romanToArabic(String romanNumber){//"цифровизация" символов римских чисел
         return switch (romanNumber) {
-            case "Ⅰ" -> 1;
+           /* case "Ⅰ" -> 1;//символы с кодировки UTF-8 с 8544 по 8557
             case "Ⅱ" -> 2;
             case "Ⅲ" -> 3;
             case "Ⅳ" -> 4;
@@ -143,7 +145,20 @@ public class Main {
             case "Ⅸ" -> 9;
             case "Ⅹ" -> 10;
             case "Ⅼ" -> 50;
-            case "Ⅽ" -> 100;
+            case "Ⅽ" -> 100;*/
+            case "I" -> 1;
+            case "II" -> 2;
+            case "III" -> 3;
+            case "IV" -> 4;
+            case "V" -> 5;
+            case "VI" -> 6;
+            case "VII" -> 7;
+            case "VIII" -> 8;
+            case "IX" -> 9;
+            case "X" -> 10;
+            case "L" -> 50;
+            case "C" -> 100;
+
             default -> -1;
         };
     }
